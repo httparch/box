@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <div class="container">
+        <div class="money-container">
+            <div class="credits-container">$: 9999</div>
+            <div class="bet-container">bet: 0</div>
+        </div>
+        <div class="dice-container">
+            <div class="dice1 dice-color-result"></div>
+            <div class="dice2 dice-color-result"></div>
+            <div class="dice3 dice-color-result"></div>
+        </div>
+        <button class="roll-dice">Roll</button>
+        <button class="roll-dice reset-dice">Reset</button>
+        <div class="color-container">
+            <button class="dice yellow" onclick="chooseColor(`yellow`); "></button>
+            <button class="dice red" onclick="chooseColor(`red`)"> </button>
+            <button class="dice orange"  onclick="chooseColor(`orange`)"></button>
+            <button class="dice blue"onclick="chooseColor(`blue`)"></button>
+            <button class="dice green"  onclick="chooseColor(`green`)" ></button>
+            <button class="dice pink"onclick="chooseColor(`pink`)" ></button>
+        </div>
+    </div>
+   
+    <div class="promptBet">
+        <div class="description">
+            <p class="desc">You chose yellow. Input a bet</p>
+        </div>
+        <input class="input-bet" type="text"><button class="done-button">Done</button>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>

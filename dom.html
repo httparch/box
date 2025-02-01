@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Youtube subscribe button</p>
+    <button class='button' onclick="sub_button()">Subscribe</button>
+
+    <p>Rock-Paper-Scissor</p>
+    <a href="coin.html">click here</a>
+
+    <p>Amazon shipping calculator</p>
+    <p>Orders under $40 = +$10 shipping</p>
+    <p>Orders over $40 = FREE shippings</p>
+    <input class='textfield' type="text" placeholder="Cost of Order" onkeydown="handleKey(event); console.log(event.key)/*handleKeyEvent(event); */">
+    <button onclick="calculate()">Calculate</button>
+    <p class="cost"></p>
+    <script>
+        var flag = 0;
+        function sub_button(){        
+            if(flag == 0) {document.querySelector('.button').innerHTML = 'Subscribed'; flag=1}
+            else {document.querySelector('.button').innerHTML = 'Subscribe'; flag = 0};
+        }
+        
+        function calculate(){
+            let textFieldValue = document.querySelector('.textfield');
+            let cost = parseInt(textFieldValue.value);
+
+            if(cost < 40){
+                document.querySelector('.cost').innerHTML = `$${cost + 10}`
+            }else{
+                document.querySelector('.cost').innerHTML = `$${cost}`
+            }
+        }
+        /*
+        function handleKeyEvent(event){
+            if(event.key === 'Enter'){
+                calculate();
+            }
+        }*/
+
+        function handleKey(event){
+            if(event.key !== 'Backspace'){
+                document.querySelector('.cost').innerHTML += event.key;
+                return;
+            }
+            let haba = document.querySelector('.cost').innerHTML.length;
+            document.querySelector('.cost').innerHTML = document.querySelector('.cost'                                                                  ).innerHTML.slice(0, length-1);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f8ff;
+}
+
+
+
+.promptBet{
+    display: none;
+    position: absolute;
+    z-index: 10;
+    text-align: center;
+    background: #e1f1bf;
+    border-radius: 16px;
+    padding: 50px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.reveal{
+    display: block;
+}
+
+.container {
+    text-align: center;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.money-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 200px;   
+}
+
+
+.credits-container {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.bet-container{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+    margin-right: 50px;
+}
+
+
+
+.dice-container {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 30px 30px;
+    
+}
+
+.dice-container .dice1,
+.dice-container .dice2,
+.dice-container .dice3 {
+    width: 130px;
+    height: 130px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #555;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+}
+
+.dice-container div:hover {
+    transform: scale(1.1);
+}
+
+.roll-dice {
+    background-color: #ff5722;
+    color: #fff;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.roll-dice:hover {
+    background-color: #e64a19;
+}
+
+.selected-color{
+    opacity: 50%;
+}
+
+.color-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.color-container .dice {
+    width: 130px;
+    height: 130px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+.yellow {
+    background-color: #ffeb3b;
+}
+.red {
+    background-color: #f44336;
+}
+.orange {
+    background-color: #ff9800;
+}
+.blue {
+    background-color: #2196f3;
+}
+.green {
+    background-color: #4caf50;
+}
+.pink {
+    background-color: #e91e63;
+}
+
+.color-container .dice:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coin</title>
+</head>
+<body>
+    <p>Tail or Heads?</p>
+    <button onclick="playGame('heads')">Heads</button>
+    <button onclick="playGame('tails')">Tails</button> 
+    <p class="result"></p>
+    <script>
+        let storedScore = localStorage.getItem('score')
+        let score = storedScore ? JSON.parse(storedScore) : {wins: 0, loses: 0};
+
+        function playGame(choice){
+            let result;
+            let coin = coinResult();
+
+            if(coin === choice){
+                score.wins++;
+                result = 'You win!';
+            }
+            else{
+                score.loses++;
+                result = 'You lose!';
+            }
+
+            localStorage.setItem('score', JSON.stringify(score));
+            
+            document.querySelector('.result').innerHTML = `Player choose ${choice}. The coin shows ${coin}.${result} Wins:${score.wins} Loses:${score.loses}`
+        }
+        
+        function coinResult(){
+            let result = Math.random();
+            return result < 0.5 ? 'heads' : 'tails';
+        }   
+            
+    </script>
+</body>
+</html>
