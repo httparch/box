@@ -2,6 +2,7 @@
 const roll_button = document.querySelector('.roll-dice');
 const reset_button = document.querySelector('.reset-dice');
 const bet_confirm_button = document.querySelector('.done-button');
+let colored_dice = document.querySelectorAll('.dice');
 
 let input_bet = document.querySelector('.input-bet');
 
@@ -13,6 +14,7 @@ let colors = ['yellow','red','pink','blue','orange','green']
 const arr_length = colors.length;
 
 function chooseColor(color){
+
     let choice = document.querySelector(`.${color}`);
 
     if(choice.textContent !== 'selected'){
