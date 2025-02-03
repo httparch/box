@@ -1,5 +1,6 @@
 import { cart, addToCart } from './cart.js';
 import { product } from './products.js';
+import { formatCurrency } from './utils/money.js';
 
 
 const product_container = document.querySelector('.products');
@@ -11,7 +12,7 @@ product.forEach(product => {
     htmlProduct += `<div class="product">
                         <h3>${product.name}</h3>
                         <img src="${product.image}" alt="Product Image">
-                        <p>$${(product.price / 100).toFixed(2)}</p>
+                        <p>$${formatCurrency(product.price)}</p>
                         <div class="rating">★★★★☆ (${product.rating.review} reviews)</div>
                         <div class="quantity">
                             <label for="qty1">Qty:</label>
