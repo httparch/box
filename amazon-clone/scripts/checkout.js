@@ -1,8 +1,11 @@
-import { cart, removeToCart } from "./cart.js";
+import { cart, cartQuantity, removeToCart } from "./cart.js";
 import { product } from "./products.js";
 import { formatCurrency } from "./utils/money.js";
+import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 let order_summary = document.querySelector('.order-summary');
+let checkOutHeader = document.querySelector('.return-to-home-link');
+//<input class="quantity-input" style="width:30px;display:none"><button class="save-quantity-link" style="display:none">Save</button>
 
 let htmlProduct = ``;
 
@@ -36,13 +39,14 @@ cart.forEach((item, index) =>{
                   <span>
                     Quantity: <span class="quantity-label">${item.quantity}</span>
                   </span>
-                  <button class="update-quantity-link link-primary">
-                    Update
+                  <button class="update-quantity-link link-primary" data-product-id="${matchingItem.id}">
+                    Update 
                   </button>
                   <button class="delete-quantity-link link-primary" data-product-id="${matchingItem.id}">
                     Delete
                   </button>
                 </div>
+                
               </div>
 
               <div class="delivery-options">
@@ -100,10 +104,24 @@ order_summary.innerHTML = htmlProduct;
 document.querySelectorAll('.delete-quantity-link').forEach(deleteLink => {
     deleteLink.addEventListener('click', () =>{
         const itemToDelete = deleteLink.dataset.productId;
+        console.log('deleteLink:',itemToDelete)
         removeToCart(itemToDelete);
+        updateCartQuantity();
 
         const container = document.querySelector(`.cart-item-${itemToDelete}`)
         container.remove();
     })
 })
 
+document.querySelectorAll('.update-quantity-link').forEach(buttonLink =>{
+  buttonLink.addEventListener('click', ()=>{
+    let id = buttonLink.dataset.productId;
+
+  })
+})
+
+function updateCartQuantity(){
+  checkOutHeader.innerHTML = cartQuantity();
+}
+
+updateCartQuantity();
