@@ -36,9 +36,12 @@ function updateCartQuantity(){
 
 document.querySelectorAll('.add-button').forEach(button => {
     button.addEventListener('click', () => {
-        let id = button.dataset;
+        let id = button.dataset; //returns string
+        console.log(id)
         addToCart(id);
         updateCartQuantity();
     })
 
 })
+
+updateCartQuantity();
