@@ -1,4 +1,4 @@
-import { cart } from "./cart.js";
+import { cart, removeToCart } from "./cart.js";
 import { product } from "./products.js";
 import { formatCurrency } from "./utils/money.js";
 
@@ -16,7 +16,7 @@ cart.forEach((item, index) =>{
         }
     })
 
-    htmlProduct += `<div class="cart-item-container">
+    htmlProduct += `<div class="cart-item-container cart-item-${matchingItem.id}">
             <div class="delivery-date">
               Delivery date: Tuesday, June 21
             </div>
@@ -36,12 +36,12 @@ cart.forEach((item, index) =>{
                   <span>
                     Quantity: <span class="quantity-label">${item.quantity}</span>
                   </span>
-                  <span class="update-quantity-link link-primary">
+                  <button class="update-quantity-link link-primary">
                     Update
-                  </span>
-                  <span class="delete-quantity-link link-primary">
+                  </button>
+                  <button class="delete-quantity-link link-primary" data-product-id="${matchingItem.id}">
                     Delete
-                  </span>
+                  </button>
                 </div>
               </div>
 
@@ -97,4 +97,13 @@ cart.forEach((item, index) =>{
         
 order_summary.innerHTML = htmlProduct;
 
-console.log(cart)
+document.querySelectorAll('.delete-quantity-link').forEach(deleteLink => {
+    deleteLink.addEventListener('click', () =>{
+        const itemToDelete = deleteLink.dataset.productId;
+        removeToCart(itemToDelete);
+
+        const container = document.querySelector(`.cart-item-${itemToDelete}`)
+        container.remove();
+    })
+})
+
