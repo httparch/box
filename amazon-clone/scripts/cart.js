@@ -4,10 +4,12 @@ export let cart = JSON.parse(localStorage.getItem('cart'));
 if(!cart){
     cart = [{
         productId: 0,
-        quantity:1
+        quantity:1,
+        deliveryOptionsId: 1,
     },{
         productId: 1,
-        quantity:1
+        quantity:1,
+        deliveryOptionsId:2
     }]
 }
 
@@ -33,7 +35,8 @@ export function addToCart(itemId){
         }else{
             cart.push({
                 productId: Number(itemId.productId),
-                quantity: 1
+                quantity: 1,
+                deliveryOptionsId:1
             });
         }
         console.log(cart)
@@ -56,4 +59,20 @@ export function removeToCart(itemId){
 
 export function cartQuantity(){
     return cart.length > 1 ? `${cart.length} items` : `${cart.length} item`;
+}
+
+export function updateDeliveryOption(itemId, deliveryOptionId){
+
+    let matchingItem;
+    cart.forEach((item) =>{
+        if(itemId == item.productId){ 
+            matchingItem = item;
+            
+        }
+    })
+    
+    
+    matchingItem.deliveryOptionsId = deliveryOptionId;
+    
+    saveStorage();
 }
