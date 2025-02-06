@@ -1,5 +1,5 @@
-import { cart, addToCart } from './cart.js';
-import { product } from './products.js';
+import { cart, addToCart } from './data/cart.js';
+import { product } from './data/products.js';
 import { formatCurrency } from './utils/money.js';
 
 

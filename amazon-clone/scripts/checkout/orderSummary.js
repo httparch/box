@@ -1,7 +1,9 @@
-import { cart, cartQuantity, removeToCart, updateDeliveryOption } from "../cart.js";
-import { product } from "../products.js";
+import { cart, cartQuantity, removeToCart, updateDeliveryOption } from "../data/cart.js";
+import { product, getProduct } from "../data/products.js";
 import { formatCurrency } from "../utils/money.js";
-import { deliveryOptions } from "../deliveryopt.js";
+import { deliveryOptions, getDeliveryOption } from "../data/deliveryopt.js";
+import { renderPaymentSummary } from "./paymentSummary.js";
+
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 let order_summary = document.querySelector('.order-summary');
@@ -14,23 +16,12 @@ export function renderOrderSummary(){
 
   cart.forEach((item, index) =>{
       let productId = item.productId;
-      let matchingItem;
-      
-      product.forEach((product) =>{
-          if(productId === product.id){
-              matchingItem = product
-          }
-      })
+
+      const matchingItem = getProduct(productId)
 
       const deliveryOptionsId = item.deliveryOptionsId;
-      let deliveryOption;
-
-      deliveryOptions.forEach( option => {
-        console.log('in',option.id)
-        if(option.id === deliveryOptionsId){
-          deliveryOption = option;
-        }
-      })
+      
+      const deliveryOption = getDeliveryOption(deliveryOptionsId);
       
       const today = dayjs();
       const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
@@ -118,12 +109,13 @@ export function renderOrderSummary(){
   document.querySelectorAll('.delete-quantity-link').forEach(deleteLink => {
       deleteLink.addEventListener('click', () =>{
           const itemToDelete = deleteLink.dataset.productId;
-          console.log('deleteLink:',itemToDelete)
           removeToCart(itemToDelete);
           updateCartQuantity();
 
           const container = document.querySelector(`.cart-item-${itemToDelete}`)
           container.remove();
+
+          renderPaymentSummary();
       })
   })
 
@@ -148,6 +140,7 @@ export function renderOrderSummary(){
       console.log('come', deliveryOptionId)
       updateDeliveryOption(productId, deliveryOptionId);
       renderOrderSummary();
+      renderPaymentSummary();
     })
   });
 
