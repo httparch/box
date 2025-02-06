@@ -5,11 +5,11 @@ if(!cart){
     cart = [{
         productId: 0,
         quantity:1,
-        deliveryOptionsId: 1,
+        deliveryOptionsId: 2,
     },{
         productId: 1,
         quantity:1,
-        deliveryOptionsId:2
+        deliveryOptionsId:1
     }]
 }
 
@@ -66,13 +66,12 @@ export function updateDeliveryOption(itemId, deliveryOptionId){
     let matchingItem;
     cart.forEach((item) =>{
         if(itemId == item.productId){ 
+            console.log('item  value:',item)
             matchingItem = item;
-            
         }
     })
-    
-    
-    matchingItem.deliveryOptionsId = deliveryOptionId;
-    
+
+    matchingItem.deliveryOptionsId = Number(deliveryOptionId); //FVCC! just because nagiging string siya kaya nagiging undefined yung value, now okay na
+
     saveStorage();
 }
